@@ -50,7 +50,7 @@ Sinta-se à vontade para fazer sugestões, reportar bugs ou abrir pull requests!
 
 ## 🧑‍💻 Autor
 
-**Matheus Soares - Tecnico em Desenvolvimento de Sistemas**  
+**Matheus Soares - Técnico em Desenvolvimento de Sistemas**  
 📧 [Contato via GitHub](https://github.com/MatheusLS240)
 
 ---
