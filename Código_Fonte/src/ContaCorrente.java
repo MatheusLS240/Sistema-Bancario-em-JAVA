@@ -56,6 +56,4 @@ public class ContaCorrente extends Conta {
     public void setTaxaManutencao(double taxaManutencao) {
         this.taxaManutencao = taxaManutencao;
     }
-
-    
 }

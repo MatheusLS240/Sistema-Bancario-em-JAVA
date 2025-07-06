@@ -3,10 +3,10 @@ import java.util.Map;
 import java.util.Scanner;
 
 public abstract class Conta extends Cliente {
-    protected int numConta;
-    protected double saldo = 0.0;
-    protected String senha;
-    protected LocalDate ultimaAtualizacao = LocalDate.now();
+    private int numConta;
+    private double saldo = 0.0;
+    private String senha;
+    private LocalDate ultimaAtualizacao = LocalDate.now();
 
     public Conta(String nome, String genero, String cpf, String email, long telefone) {
         super(nome, genero, cpf, email, telefone);
@@ -17,6 +17,7 @@ public abstract class Conta extends Cliente {
         System.out.print("Informe o valor para depósito: ");
         double valor = sc.nextDouble();
         sc.nextLine(); 
+        
         if (valor >= 1) {
             this.saldo += valor;
             System.out.println("\n( -- Depósito Conta " + getNumConta() + " -- )");
@@ -39,14 +40,24 @@ public abstract class Conta extends Cliente {
         sc.nextLine(); 
 
         Conta destino = listaDeContas.get(numero);
-        if (destino != null && valor >= 1 && this.saldo >= valor) {
+
+        if(valor <= 0) {
+            System.out.println("\n( -- Transferência Conta " + getNumConta() + " -- )");
+            System.out.println("Valor inválido para transferência.");
+            return;
+        }
+
+        if (destino != null && getSaldo() >= valor) {
             this.saldo -= valor;
-            destino.saldo += valor;
+            setSaldo(saldo);
             System.out.println("\n( -- Transferência Conta " + getNumConta() + " -- )");
             System.out.println("Transferência realizada com sucesso.");
-        } else {
+            return;
+        } 
+
+        if(destino == null) {
             System.out.println("\n( -- Transferência Conta " + getNumConta() + " -- )");
-            System.out.println("Conta de destino não encontrada ou saldo insuficiente.");
+            System.out.println("Conta de destino inválida.");
         }
     }
 
@@ -87,6 +98,4 @@ public abstract class Conta extends Cliente {
     public void setUltimaAtualizacao(LocalDate ultimaAtualizacao) {
         this.ultimaAtualizacao = ultimaAtualizacao;
     }
-
-    
 }
